@@ -36,7 +36,7 @@ async function loadUrl() {
     div1[i] = document.createElement("div");
     div1[i].className = "card";
     var content = document.createElement('p');
-    content.innerText=i + 1 + "The short url for " + urls[i].longUrl +"is" 
+    content.innerText=i + 1 + ") The short url for " + urls[i].longUrl +"is" 
     anchor[i] = document.createElement("a");
     anchor[i].innerHTML =urls[i].shortUrl;
     anchor[i].href = urls[i].shortUrl;
