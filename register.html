@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <title>User Login</title>
+    <script>
+          localStorage.removeItem('token')
+    </script>
+    
+</head>
+<body>    
+    <br><br><br>
+    <div class="container">
+        <p class="h1 text-center">Sign up for Use Url-Shortener</p>
+    <form onsubmit="SignUp();return false;">
+        <div class="form-group">
+            <label for="name">Username</label>
+            <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+            <small id="emailHelp" class="form-text text-muted">Enter your username</small>
+          </div>
+        <div class="form-group">
+          <label for="Email">Email address</label>
+          <input type="email" class="form-control" id="Email" aria-describedby="emailHelp">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="Password">Password</label>
+          <input type="password" class="form-control" id="Password">
+        </div>        
+        <button type="submit" class="btn btn-primary">Sign up</button>
+      </form>
+ 
+      </div>
+      <script>
+        
+        async function SignUp(){
+           try {
+            let data ={
+                name : document.getElementById("name").value,
+                email : document.getElementById("Email").value,
+                password: document.getElementById("Password").value
+            };
+           let loginData = await fetch("http://localhost:3000/api/users/register",{
+                method:"POST",
+                body:JSON.stringify(data),
+                headers:{
+                    "Content-Type":"application/json",
+                },
+            });
+            if(!loginData.ok) throw new Error();
+            let loginResult = await loginData.json()
+            console.log(loginResult);
+            let authenticate = loginResult.token;            
+            window.location.replace("user.html");
+        }
+            catch (error) {
+               console.log("Something gone wrong");
+           }
+        }
+        
+    </script>
+</body>
+</html>

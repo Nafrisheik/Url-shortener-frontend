@@ -1,23 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <title>Url-Shortener</title>
-</head>
-<body>
-    <script src="index.js"></script>
-    <div class="container">
-        <p class="h1 text-center">Url-Shortener</p>
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Place your long Url.." id="urlname" aria-describedby="button-addon2">
+    <script>
+      const token = localStorage.getItem("token");
+      if (!token) window.location.replace("user.html");
+    </script>
+  </head>
+  <body>
+    <div class="container" id="contain">
+      <p class="h1 text-center">Url-Shortener</p>
+      <button type="button" class="btn btn-primary" value="" onclick="logout()">
+        Logout
+      </button>
+      <br>
+      <form onsubmit="sendUrl()">
+        <div class="form-group">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Place your long Url.."
+              id="urlname"
+            />
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit" onclick="sendUrl()" id="button-addon2">Button</button>
+              <button
+                class="btn btn-outline-secondary"
+                type="submit"            
+                id="button-addon2"
+              >
+                Get short Url
+              </button>
             </div>
           </div>
+        </div>
+      </form>
+      <script src="index.js"></script>
     </div>
-   
-
-</body>
+    <div class="container" id="contain1"></div>
+  </body>
 </html>
